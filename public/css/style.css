@@ -10,7 +10,7 @@
     --glass-effect: blur(10px);
 }
 
-/* Piksel Fontu İçe Aktar */
+/* Piksel Fontu İçe Aktar (Gerekirse diye tutuyoruz) */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -25,7 +25,6 @@ body {
 
 a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-/* Arka Plan Animasyonu */
 #vanta-bg {
     position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; pointer-events: none;
 }
@@ -38,16 +37,32 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
     border-bottom: 1px solid var(--card-border); z-index: 1000;
 }
 
-.logo {
-    font-size: 1.5rem; font-weight: 800; color: var(--accent-color); letter-spacing: 1px;
-    text-shadow: 0 0 15px var(--accent-glow);
+/* YENİ DÖNEN ÇARK LOGOSU */
+.logo-container {
+    display: flex; align-items: center; gap: 10px; text-decoration: none;
 }
+.gear-wrapper {
+    position: relative; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+}
+.gear {
+    color: var(--accent-color); position: absolute;
+    filter: drop-shadow(0 0 5px var(--accent-color));
+}
+.gear-big { font-size: 1.8rem; animation: spin-right 4s linear infinite; top: 0; left: 0; }
+.gear-small { font-size: 1.2rem; animation: spin-left 4s linear infinite; bottom: -5px; right: -8px; color: #bd00ff; }
+
+.logo-text {
+    font-size: 1.2rem; font-weight: 800; color: #fff; letter-spacing: 1px;
+    font-family: 'Fira Code', monospace;
+}
+
+@keyframes spin-right { 100% { transform: rotate(360deg); } }
+@keyframes spin-left { 100% { transform: rotate(-360deg); } }
 
 .nav-links { display: flex; gap: 30px; list-style: none; }
 .nav-links a { font-size: 0.95rem; font-weight: 500; color: var(--text-muted); position: relative; }
 .nav-links a:hover { color: var(--accent-color); }
 
-/* Dil Seçici Butonu */
 .lang-btn {
     border: 1px solid rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 5px;
     font-size: 0.8rem; color: white; transition: 0.3s; display: flex; align-items: center; gap: 5px;
@@ -56,156 +71,138 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 
 .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
 
-/* --- 3. GİRİŞ (HERO) - YENİ BLOK VE PİKSEL TASARIM --- */
+/* --- 3. GİRİŞ (HERO) - SONSUZLUK DÖNGÜSÜ --- */
 .hero {
     min-height: 100vh; display: flex; align-items: center; justify-content: center;
-    text-align: center; padding: 120px 20px 50px;
+    text-align: center; padding: 120px 20px 50px; position: relative;
 }
 
-.hero-content { max-width: 1000px; animation: fadeIn 1s ease-out; position: relative; z-index: 2; }
+.hero-content {
+    max-width: 1000px; animation: fadeIn 1s ease-out; position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
+}
 
-/* YENİ 'HELLO WORLD' TAGI - PIXEL STYLE */
-.hero-tag {
-    display: inline-block;
-    padding: 12px 24px;
-    font-family: 'Press Start 2P', cursive; /* Piksel Fontu */
-    margin-bottom: 35px;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-
-    /* Piksel görünümlü kutu tasarımı */
-    background: #1a1a1a;
-    border: 4px solid var(--accent-color);
-    box-shadow:
-            0 0 0 4px #000, /* İç siyah çerçeve */
-            0 0 0 8px var(--accent-color), /* Dış neon çerçeve */
-            0 0 25px var(--accent-color); /* Parlama */
-
-    color: var(--accent-color);
-    text-shadow: 3px 3px #000; /* Piksel gölge */
+/* CI/CD INFINITY LOOP CONTAINER */
+.infinity-container {
     position: relative;
-    z-index: 1;
-}
-/* Eski animasyonları temizle */
-.hero-tag::before { display: none; }
-.hero-tag span { background: none; -webkit-text-fill-color: initial; animation: none; }
-
-/* İSİM BAŞLIĞI - BLOCK STYLE */
-.hero h1 {
-    font-size: 7rem; /* Daha büyük */
-    font-weight: 900;
-    line-height: 0.9;
-    margin-bottom: 20px;
-    letter-spacing: -4px;
-    text-transform: uppercase; /* Blok görünüm */
-
-    /* Renk Animasyonu */
-    background: linear-gradient(to right, #ffffff, #a0a0a0, #00f3ff, #ffffff);
-    background-size: 300% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shine 5s linear infinite;
-
-    /* Güçlü Katmanlı Blok Gölge */
-    text-shadow:
-            4px 4px 0px #000000,
-            8px 8px 0px rgba(0, 243, 255, 0.4),
-            12px 12px 0px rgba(0, 243, 255, 0.2);
-}
-
-/* FÜTÜRİSTİK ALT BAŞLIK */
-.hero-subtitle {
-    font-size: 2.8rem;
-    font-weight: 800;
+    width: 600px;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 30px;
-    background: linear-gradient(90deg, #00f3ff, #bd00ff, #00f3ff);
+}
+
+/* Arka plandaki SVG */
+.infinity-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: visible;
+}
+
+/* Akan Çizgi Animasyonu */
+.infinity-path {
+    fill: none;
+    stroke: url(#gradient); /* SVG içindeki gradient tanımı */
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-dasharray: 20 40; /* Kesik çizgiler */
+    animation: flow 2s linear infinite;
+    filter: drop-shadow(0 0 10px var(--accent-color));
+}
+
+/* Arkadaki silik yol */
+.infinity-path-bg {
+    fill: none;
+    stroke: rgba(255, 255, 255, 0.05);
+    stroke-width: 4;
+}
+
+@keyframes flow {
+    100% { stroke-dashoffset: -60; }
+}
+
+/* İSİM (Döngünün Merkezinde) */
+.hero h1 {
+    position: relative;
+    z-index: 10;
+    font-size: 4.5rem;
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1;
+    margin: 0;
+
+    background: linear-gradient(to right, #fff, #00f3ff, #fff);
     background-size: 200% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     animation: shine 3s linear infinite;
+    text-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
 }
 
-@keyframes shine {
-    to { background-position: 200% center; }
+.hero-subtitle {
+    font-size: 2rem; font-weight: 700; margin-top: -20px; margin-bottom: 40px;
+    background: linear-gradient(90deg, #bd00ff, #00f3ff);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
 
-/* AÇIKLAMA YAZISI */
+@keyframes shine { to { background-position: 200% center; } }
+
 .hero p {
-    font-size: 1.4rem; color: #e0e0e0; margin-bottom: 50px; max-width: 800px;
-    margin-left: auto; margin-right: auto; line-height: 1.8; font-weight: 500;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.8);
+    font-size: 1.2rem; color: #ccc; margin-bottom: 50px; max-width: 800px;
+    text-shadow: 0 2px 5px rgba(0,0,0,1);
 }
 
-/* Butonlar */
-.btn-group { display: flex; gap: 20px; justify-content: center; margin-bottom: 60px; }
+.btn-group { display: flex; gap: 20px; justify-content: center; margin-bottom: 60px; z-index: 10; position: relative; }
 .btn { padding: 18px 45px; border-radius: 50px; font-weight: 700; font-size: 1.1rem; cursor: pointer; transition: 0.3s; }
 .btn-primary { background: var(--accent-color); color: #000; border: none; box-shadow: 0 0 25px rgba(0, 243, 255, 0.3); }
 .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 50px rgba(0, 243, 255, 0.6); background: white; }
 .btn-outline { background: rgba(255,255,255,0.05); color: #fff; border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(5px); }
 .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.15); }
 
-/* Tech Stack İkonları */
 .tech-stack { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
 .tech-stack i { font-size: 3.5rem; color: rgba(255,255,255,0.5); transition: 0.4s; cursor: pointer; }
 .tech-stack i:hover { color: var(--accent-color); transform: translateY(-10px) scale(1.1); filter: drop-shadow(0 0 15px var(--accent-color)); }
 
-/* --- 4. KARTLAR GENEL --- */
+/* --- MOBİL UYUMLULUK --- */
+@media screen and (max-width: 768px) {
+    .infinity-container { width: 100%; height: auto; min-height: 200px; }
+    .hero h1 { font-size: 2.5rem; }
+    .infinity-svg { transform: scale(0.8); }
+    .gear-wrapper { transform: scale(0.8); }
+    .navbar { padding: 0 20px; }
+    .hamburger { display: block; z-index: 1002; }
+    .nav-links { position: fixed; top: 0; right: 0; width: 100%; height: 100vh; background: #000; flex-direction: column; justify-content: center; align-items: center; transform: translateX(100%); transition: 0.4s; z-index: 1001; }
+    .nav-links.active { transform: translateX(0); }
+    .nav-links a { font-size: 1.5rem; color: #fff; margin: 10px 0; }
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* DİĞER SAYFALAR İÇİN KARTLAR VS. AYNEN KORUNDU */
 .section-container { max-width: 1200px; margin: 100px auto; padding: 0 20px; }
-.section-title {
-    font-size: 2.5rem; margin-bottom: 50px; text-align: center; color: white;
-    position: relative; display: inline-block; left: 50%; transform: translateX(-50%);
-}
-.section-title::after {
-    content: ''; display: block; width: 80px; height: 4px; background: var(--accent-color);
-    margin: 15px auto 0; border-radius: 2px; box-shadow: 0 0 10px var(--accent-color);
-}
-
+.section-title { font-size: 2.5rem; margin-bottom: 50px; text-align: center; color: white; position: relative; display: inline-block; left: 50%; transform: translateX(-50%); }
+.section-title::after { content: ''; display: block; width: 80px; height: 4px; background: var(--accent-color); margin: 15px auto 0; border-radius: 2px; box-shadow: 0 0 10px var(--accent-color); }
 .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
-
-.card {
-    background: var(--card-bg); border: 1px solid var(--card-border);
-    padding: 30px; border-radius: 20px; backdrop-filter: blur(10px);
-    transition: 0.4s; position: relative; overflow: hidden;
-}
+.card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 30px; border-radius: 20px; backdrop-filter: blur(10px); transition: 0.4s; position: relative; overflow: hidden; }
 .card:hover { transform: translateY(-10px); border-color: var(--accent-color); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
 .card-icon { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 20px; }
 .card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
 .card p { color: #aaa; font-size: 0.95rem; margin-bottom: 20px; }
 .tags { display: flex; gap: 10px; flex-wrap: wrap; }
 .tag { font-size: 0.8rem; padding: 5px 12px; border-radius: 15px; background: rgba(255,255,255,0.05); color: #ccc; font-family: 'Fira Code', monospace; border: 1px solid rgba(255,255,255,0.1); }
-
-/* --- 5. HAKKIMDA --- */
 .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 .about-content h2 { font-size: 2rem; margin-bottom: 20px; color: var(--accent-color); }
 .about-content p { margin-bottom: 20px; color: #ccc; font-size: 1.1rem; line-height: 1.8; }
 .skill-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
 .skill-badge { padding: 10px 20px; border-radius: 8px; background: rgba(0, 243, 255, 0.05); border: 1px solid rgba(0, 243, 255, 0.2); color: var(--accent-color); font-weight: 600; transition: 0.3s; }
 .skill-badge:hover { background: var(--accent-color); color: #000; box-shadow: 0 0 20px var(--accent-glow); }
-
-/* --- 6. İLETİŞİM FORMU --- */
-.contact-box {
-    max-width: 700px; margin: 120px auto; padding: 50px;
-    background: rgba(10,10,10,0.8); border: 1px solid #333; border-radius: 20px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.5); backdrop-filter: blur(10px);
-}
+.contact-box { max-width: 700px; margin: 120px auto; padding: 50px; background: rgba(10,10,10,0.8); border: 1px solid #333; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); backdrop-filter: blur(10px); }
 .form-input { width: 100%; padding: 15px; background: #151515; border: 1px solid #333; color: #fff; border-radius: 10px; font-size: 1rem; transition: 0.3s; }
 .form-input:focus { outline: none; border-color: var(--accent-color); background: #1a1a1a; box-shadow: 0 0 10px rgba(0,243,255,0.1); }
 .btn-submit { width: 100%; padding: 15px; background: var(--accent-color); color: #000; border: none; border-radius: 10px; font-weight: 800; font-size: 1.1rem; cursor: pointer; transition: 0.3s; }
 .btn-submit:hover { background: #fff; box-shadow: 0 0 30px var(--accent-glow); }
-
-/* --- 7. MOBİL --- */
-@media screen and (max-width: 768px) {
-    .navbar { padding: 0 20px; }
-    .hamburger { display: block; z-index: 1002; }
-    .nav-links { position: fixed; top: 0; right: 0; width: 100%; height: 100vh; background: #000; flex-direction: column; justify-content: center; align-items: center; transform: translateX(100%); transition: 0.4s; z-index: 1001; }
-    .nav-links.active { transform: translateX(0); }
-    .nav-links a { font-size: 1.5rem; color: #fff; margin: 10px 0; }
-    .hero h1 { font-size: 3.5rem; } /* Mobilde de büyük olsun */
-    .hero-subtitle { font-size: 1.8rem; }
-    .btn-group { flex-direction: column; width: 100%; }
-    .btn { width: 100%; }
-    .about-grid { grid-template-columns: 1fr; }
-    .contact-box { padding: 30px 20px; margin: 100px 20px; }
-}
-
-@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
