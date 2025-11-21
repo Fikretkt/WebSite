@@ -1,26 +1,63 @@
-<?php include APP_PATH . '/views/partials/header.php'; ?>
-<?php include APP_PATH . '/views/partials/navbar.php'; ?>
+<?php
+// 1. Dili Güvenli Şekilde Al
+$lang = isset($_GET['lang']) ? $_GET['lang'] : 'tr';
+$allowed = ['tr', 'en', 'de'];
+if (!in_array($lang, $allowed)) { $lang = 'tr'; }
+
+// 2. Çeviri Dizisi
+$translations = [
+        'tr' => [
+                'tag' => 'Hello World',
+                'title' => 'DevOps Engineer & Cloud Enthusiast',
+                'desc' => 'Modern yazılım süreçlerini hızlandırıyor, ölçeklenebilir bulut altyapıları tasarlıyor ve otomasyonun gücüyle sorunsuz sistemler inşa ediyorum.',
+                'btn_projects' => 'Projelerimi İncele',
+                'btn_contact' => 'İletişime Geç'
+        ],
+        'en' => [
+                'tag' => 'Hello World',
+                'title' => 'DevOps Engineer & Cloud Enthusiast',
+                'desc' => 'Accelerating modern software processes, designing scalable cloud infrastructures, and building seamless systems with the power of automation.',
+                'btn_projects' => 'View Projects',
+                'btn_contact' => 'Contact Me'
+        ],
+        'de' => [
+                'tag' => 'Hallo Welt',
+                'title' => 'DevOps Ingenieur & Cloud-Enthusiast',
+                'desc' => 'Beschleunigung moderner Softwareprozesse, Entwurf skalierbarer Cloud-Infrastrukturen und Aufbau nahtloser Systeme mit der Kraft der Automatisierung.',
+                'btn_projects' => 'Projekte Ansehen',
+                'btn_contact' => 'Kontaktieren'
+        ]
+];
+
+// 3. Aktif Dilin Verisini Seç
+$t = $translations[$lang];
+
+// 4. Header ve Navbar'ı Çağır
+// Not: Navbar içinde $lang değişkenini tekrar okumasın diye navbar.php'yi düzenledik
+include APP_PATH . '/views/partials/header.php';
+include APP_PATH . '/views/partials/navbar.php';
+?>
 
     <div id="vanta-bg"></div>
 
     <section class="hero">
         <div class="hero-content">
-            <span class="hero-tag">&lt;Hello World /&gt;</span>
+            <span class="hero-tag">&lt;<?php echo $t['tag']; ?> /&gt;</span>
 
+            <!-- İSİM BÜYÜK -->
             <h1>Fikret Kocatürk</h1>
-            <h2>DevOps Engineer & Cloud Enthusiast</h2>
 
-            <p>
-                Modern yazılım süreçlerini hızlandırıyor, ölçeklenebilir bulut altyapıları tasarlıyor
-                ve otomasyonun gücüyle sorunsuz sistemler inşa ediyorum.
-            </p>
+            <!-- PARLAYAN ÜNVAN -->
+            <h2 class="hero-subtitle"><?php echo $t['title']; ?></h2>
+
+            <p><?php echo $t['desc']; ?></p>
 
             <div class="btn-group">
-                <a href="<?php echo BASE_URL; ?>/index.php/projects" class="btn btn-primary">Projelerimi İncele</a>
-                <a href="<?php echo BASE_URL; ?>/index.php/contact" class="btn btn-outline">İletişime Geç</a>
+                <a href="<?php echo BASE_URL; ?>/index.php/projects?lang=<?php echo $lang; ?>" class="btn btn-primary"><?php echo $t['btn_projects']; ?></a>
+                <a href="<?php echo BASE_URL; ?>/index.php/contact?lang=<?php echo $lang; ?>" class="btn btn-outline"><?php echo $t['btn_contact']; ?></a>
             </div>
 
-            <!-- LOGOLAR BURADA -->
+            <!-- LOGOLAR -->
             <div class="tech-stack">
                 <i class="fab fa-aws" title="AWS"></i>
                 <i class="fab fa-docker" title="Docker"></i>
