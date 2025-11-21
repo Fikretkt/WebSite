@@ -77,7 +77,7 @@ include APP_PATH . '/views/partials/navbar.php';
                     el: "#vanta-bg",
                     mouseControls: true,
                     touchControls: true,
-                    gyroControls: false,
+                    gyroControls: true,
                     minHeight: 200.00,
                     minWidth: 200.00,
                     baseColor: 0x00f3ff,
@@ -85,7 +85,7 @@ include APP_PATH . '/views/partials/navbar.php';
                     amplitudeFactor: 1.5,
                     xOffset: 0.2,
                     yOffset: 0.2,
-                    size: 4.5
+                    size: 5
                 })
             } catch (e) {
                 console.error("Vanta.js başlatılamadı:", e);
