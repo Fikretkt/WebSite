@@ -1,55 +1,36 @@
-<?php
-// Config ve değişkenler Router'dan geliyor.
-include APP_PATH . '/views/partials/header.php';
-include APP_PATH . '/views/partials/navbar.php';
-?>
+<?php include APP_PATH . '/views/partials/header.php'; ?>
+<?php include APP_PATH . '/views/partials/navbar.php'; ?>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <!-- 3D Arka Plan -->
-        <div id="vanta-bg"></div>
+    <div id="vanta-bg"></div>
 
-        <!-- İçerik Container -->
-        <div class="hero-container">
+    <section class="hero">
+        <div class="hero-content">
+            <span class="hero-tag">&lt;Hello World /&gt;</span>
 
-            <p class="hero-pre">
-                <i class="fas fa-code"></i> <?php echo isset($t['hero_greeting']) ? $t['hero_greeting'] : 'Merhaba'; ?>
+            <h1>Fikret Kocatürk</h1>
+            <h2>DevOps Engineer & Cloud Enthusiast</h2>
+
+            <p>
+                Modern yazılım süreçlerini hızlandırıyor, ölçeklenebilir bulut altyapıları tasarlıyor
+                ve otomasyonun gücüyle sorunsuz sistemler inşa ediyorum.
             </p>
 
-            <h1 class="hero-title">
-                Fikret Kocatürk
-            </h1>
-
-            <h2 class="hero-subtitle terminal-cursor">
-                <?php echo isset($t['hero_title']) ? $t['hero_title'] : 'DevOps Engineer'; ?>
-            </h2>
-
-            <p class="hero-desc">
-                <?php echo isset($t['hero_desc']) ? $t['hero_desc'] : ''; ?>
-            </p>
-
-            <!-- Butonlar -->
-            <div class="hero-btns">
-                <a href="<?php echo BASE_URL; ?>/index.php/projects?lang=<?php echo $lang; ?>" class="btn btn-primary">
-                    <i class="fas fa-rocket"></i> <?php echo isset($t['btn_projects']) ? $t['btn_projects'] : 'Projeler'; ?>
-                </a>
-
-                <a href="<?php echo BASE_URL; ?>/index.php/contact?lang=<?php echo $lang; ?>" class="btn btn-secondary">
-                    <i class="fas fa-envelope"></i> <?php echo isset($t['nav_contact']) ? $t['nav_contact'] : 'İletişim'; ?>
-                </a>
+            <div class="btn-group">
+                <a href="<?php echo BASE_URL; ?>/index.php/projects" class="btn btn-primary">Projelerimi İncele</a>
+                <a href="<?php echo BASE_URL; ?>/index.php/contact" class="btn btn-outline">İletişime Geç</a>
             </div>
 
-            <!-- İkonlar -->
-            <div class="hero-icons">
+            <!-- LOGOLAR BURADA -->
+            <div class="tech-stack">
                 <i class="fab fa-aws" title="AWS"></i>
                 <i class="fab fa-docker" title="Docker"></i>
                 <i class="fab fa-linux" title="Linux"></i>
-                <i class="fas fa-server" title="Server"></i>
-                <i class="fas fa-cloud" title="Cloud"></i>
+                <i class="fab fa-jenkins" title="Jenkins"></i>
+                <i class="fab fa-python" title="Python"></i>
+                <i class="fas fa-database" title="Database"></i>
             </div>
         </div>
-    </header>
-
+    </section>
     <script>
         // Vanta.js Halo Efektini Başlat
         document.addEventListener('DOMContentLoaded', () => {

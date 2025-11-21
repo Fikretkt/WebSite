@@ -1,35 +1,42 @@
 <?php include APP_PATH . '/views/partials/header.php'; ?>
 <?php include APP_PATH . '/views/partials/navbar.php'; ?>
 
-    <div class="about-container">
-        <!-- Sol Taraf: Yazı -->
-        <div class="about-text">
-            <h2 style="color: #00f3ff;">Hakkımda</h2>
-            <p>
-                Merhaba! Ben Fikret. Teknoloji ve otomasyona olan tutkum beni DevOps dünyasına yönlendirdi.
-                Karmaşık sistemleri basitleştirmeyi, manuel işleri otomatize etmeyi ve "Continuous Everything"
-                felsefesini seviyorum.
-            </p>
-            <p>
-                Şu anda AWS üzerinde ölçeklenebilir mimariler kuruyor, Docker ve Kubernetes ile konteyner
-                orkestrasyonu sağlıyor ve Jenkins/GitLab CI ile dağıtım süreçlerini hızlandırıyorum.
-                Amacım, yazılım geliştirme ve operasyon ekipleri arasındaki köprüyü en verimli şekilde kurmak.
-            </p>
-        </div>
+    <div class="section-container">
+        <div class="about-grid">
 
-        <!-- Sağ Taraf: Yetenekler -->
-        <div>
-            <h3 style="color: white; margin-bottom: 20px;">Teknik Yetkinlikler</h3>
-            <div class="skills-grid">
-                <div class="skill-item">AWS (EC2, S3, RDS, Lambda)</div>
-                <div class="skill-item">Docker & Kubernetes</div>
-                <div class="skill-item">CI/CD (Jenkins, GitHub Actions)</div>
-                <div class="skill-item">IaC (Terraform, Ansible)</div>
-                <div class="skill-item">Linux (Ubuntu, RHEL)</div>
-                <div class="skill-item">Scripting (Bash, Python)</div>
-                <div class="skill-item">Monitoring (Prometheus, Grafana)</div>
-                <div class="skill-item">Database (MySQL, PostgreSQL)</div>
+            <!-- Sol: Metin -->
+            <div class="about-content">
+                <h2>Merhaba, Ben Fikret 👋</h2>
+                <p>
+                    Teknoloji dünyasında <strong>DevOps Engineer</strong> olarak karmaşık sistemleri ölçeklenebilir, güvenli ve otomatik hale getiriyorum.
+                    Kod ile altyapı (IaC) kavramını benimsiyor, manuel süreçleri ortadan kaldırarak ekiplerin hızlanmasını sağlıyorum.
+                </p>
+                <p>
+                    AWS bulut mimarileri, Kubernetes orkestrasyonu ve CI/CD süreçleri üzerine uzmanlaşıyorum.
+                    Benim için DevOps sadece bir araç seti değil, bir kültür ve sürekli iyileştirme felsefesidir.
+                </p>
+
+                <div style="margin-top: 30px;">
+                    <a href="<?php echo BASE_URL; ?>/index.php/contact" class="btn btn-primary" style="text-decoration:none; padding: 10px 30px; font-size: 0.9rem;">Benimle Çalış</a>
+                </div>
             </div>
+
+            <!-- Sağ: Yetenekler (Badge Tasarımı) -->
+            <div>
+                <h3 style="color: white; margin-bottom: 20px; font-size: 1.5rem;">Teknik Yetkinlikler</h3>
+                <div class="skill-badges">
+                    <div class="skill-badge"><i class="fab fa-aws"></i> AWS Cloud</div>
+                    <div class="skill-badge"><i class="fab fa-docker"></i> Docker</div>
+                    <div class="skill-badge"><i class="fas fa-dharmachakra"></i> Kubernetes</div>
+                    <div class="skill-badge"><i class="fas fa-code-branch"></i> Jenkins CI/CD</div>
+                    <div class="skill-badge"><i class="fab fa-linux"></i> Linux / Bash</div>
+                    <div class="skill-badge"><i class="fab fa-python"></i> Python</div>
+                    <div class="skill-badge"><i class="fas fa-server"></i> Terraform</div>
+                    <div class="skill-badge"><i class="fas fa-database"></i> SQL / NoSQL</div>
+                    <div class="skill-badge"><i class="fas fa-shield-alt"></i> Cyber Security</div>
+                </div>
+            </div>
+
         </div>
     </div>
 

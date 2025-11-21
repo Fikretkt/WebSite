@@ -1,151 +1,206 @@
-/* --- SIFIRLAMA --- */
+/* --- 1. MODERN SIFIRLAMA VE DEĞİŞKENLER --- */
 :root {
-    --bg-color: #0d0d0d;
-    --text-main: #e0e0e0;
-    --accent-color: #00f3ff;
-    --nav-bg: rgba(13, 13, 13, 0.95);
+    --bg-color: #050505;
+    --text-main: #ffffff;
+    --text-muted: #a0a0a0;
+    --accent-color: #00f3ff; /* Neon Mavi */
+    --accent-glow: rgba(0, 243, 255, 0.4);
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --card-border: rgba(255, 255, 255, 0.1);
+    --glass-effect: blur(10px);
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html, body {
-    width: 100%;
-    overflow-x: hidden; /* Yatay taşmayı engelle */
+body {
     background-color: var(--bg-color);
     color: var(--text-main);
     font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+    line-height: 1.6;
 }
 
-/* --- VANTA BACKGROUND --- */
+a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+/* Arka Plan Animasyonu */
 #vanta-bg {
-    position: fixed; /* Arka planı sabitle */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    z-index: -1;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: -1; pointer-events: none;
 }
 
-/* --- NAVBAR --- */
+/* --- 2. NAVBAR (CAM EFEKTLİ) --- */
 .navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    padding: 0 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: var(--nav-bg);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+    position: fixed; top: 0; left: 0; width: 100%; height: 80px;
+    padding: 0 5%; display: flex; justify-content: space-between; align-items: center;
+    background: rgba(5, 5, 5, 0.8); backdrop-filter: var(--glass-effect);
+    border-bottom: 1px solid var(--card-border); z-index: 1000;
 }
 
 .logo {
-    font-size: 2.4rem;
-    font-weight: bold;
-    color: var(--accent-color);
+    font-size: 1.5rem; font-weight: 800; color: var(--accent-color); letter-spacing: 1px;
+    text-shadow: 0 0 15px var(--accent-glow);
 }
 
-/* Masaüstü Menü */
-.nav-links {
-    display: flex;
-    gap: 25px;
+.nav-links { display: flex; gap: 30px; list-style: none; }
+.nav-links a { font-size: 0.95rem; font-weight: 500; color: var(--text-muted); position: relative; }
+.nav-links a:hover { color: var(--accent-color); }
+.nav-links a::after {
+    content: ''; position: absolute; width: 0; height: 2px; bottom: -5px; left: 0;
+    background-color: var(--accent-color); transition: 0.3s;
 }
+.nav-links a:hover::after { width: 100%; }
 
-.nav-links a {
-    font-size: 0.9rem;
-    color: #aaa;
-}
+.hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
 
-.hamburger { display: none; }
-
-/* --- HERO SECTION --- */
+/* --- 3. GİRİŞ (HERO) BÖLÜMÜ --- */
 .hero {
-    position: relative;
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 80px 20px 20px 20px; /* Navbar payı */
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 120px 20px 50px;
 }
 
-.hero-container {
-    position: relative;
-    z-index: 10;
-    max-width: 800px;
+.hero-content { max-width: 900px; animation: fadeIn 1s ease-out; }
+
+.hero-tag {
+    display: inline-block; padding: 8px 16px; border-radius: 50px;
+    background: rgba(0, 243, 255, 0.1); border: 1px solid rgba(0, 243, 255, 0.3);
+    color: var(--accent-color); font-family: 'Fira Code', monospace; margin-bottom: 20px;
 }
 
 .hero h1 {
-    font-size: 4rem;
-    line-height: 1.1;
-    margin-bottom: 10px;
-    color: white;
+    font-size: 4.5rem; font-weight: 800; line-height: 1.1; margin-bottom: 15px;
+    background: linear-gradient(to right, #fff, #ccc); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
 }
 
-.hero h2 {
-    font-size: 2rem;
-    color: #a0a0a0;
-    margin-bottom: 20px;
+.hero h2 { font-size: 2rem; color: var(--text-muted); font-weight: 300; margin-bottom: 30px; }
+
+.hero p { font-size: 1.2rem; color: #888; margin-bottom: 40px; max-width: 700px; margin-left: auto; margin-right: auto; }
+
+/* Butonlar */
+.btn-group { display: flex; gap: 20px; justify-content: center; margin-bottom: 60px; }
+
+.btn {
+    padding: 15px 40px; border-radius: 50px; font-weight: 600; font-size: 1rem; cursor: pointer; transition: 0.3s;
 }
 
-/* =========================================
-   MOBİL GÖRÜNÜM (768px ve altı)
-   ========================================= */
+.btn-primary {
+    background: var(--accent-color); color: #000; border: none;
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 0 40px var(--accent-glow); }
+
+.btn-outline {
+    background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.3);
+}
+.btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.05); }
+
+/* Tech Stack İkonları (Büyük ve Parlak) */
+.tech-stack {
+    display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; margin-top: 20px;
+}
+.tech-stack i {
+    font-size: 3.5rem; color: #444; transition: 0.4s; cursor: pointer;
+}
+.tech-stack i:hover {
+    color: var(--accent-color); transform: translateY(-10px) scale(1.1);
+    filter: drop-shadow(0 0 10px var(--accent-color));
+}
+
+/* --- 4. KARTLAR GENEL (PROJELER & HAKKIMDA) --- */
+.section-container { max-width: 1200px; margin: 100px auto; padding: 0 20px; }
+.section-title {
+    font-size: 2.5rem; margin-bottom: 50px; text-align: center;
+    position: relative; display: inline-block; left: 50%; transform: translateX(-50%);
+}
+.section-title::after {
+    content: ''; display: block; width: 60px; height: 4px; background: var(--accent-color);
+    margin: 10px auto 0; border-radius: 2px;
+}
+
+/* Grid Yapıları */
+.grid-layout {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;
+}
+
+.card {
+    background: var(--card-bg); border: 1px solid var(--card-border);
+    padding: 30px; border-radius: 20px; backdrop-filter: blur(5px);
+    transition: 0.4s; position: relative; overflow: hidden;
+}
+.card:hover {
+    transform: translateY(-10px); border-color: var(--accent-color);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+}
+.card::before {
+    content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.03), transparent);
+    transform: translateX(-100%); transition: 0.5s;
+}
+.card:hover::before { transform: translateX(100%); }
+
+.card-icon { font-size: 2rem; color: var(--accent-color); margin-bottom: 20px; }
+.card h3 { font-size: 1.5rem; margin-bottom: 15px; color: #fff; }
+.card p { color: #aaa; font-size: 0.95rem; margin-bottom: 20px; }
+
+.tags { display: flex; gap: 10px; flex-wrap: wrap; }
+.tag {
+    font-size: 0.8rem; padding: 5px 12px; border-radius: 15px;
+    background: rgba(255,255,255,0.05); color: #ccc; font-family: 'Fira Code', monospace;
+}
+
+/* --- 5. HAKKIMDA ÖZEL --- */
+.about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+}
+.about-content h2 { font-size: 2rem; margin-bottom: 20px; color: var(--accent-color); }
+.about-content p { margin-bottom: 20px; color: #bbb; font-size: 1.05rem; }
+
+.skill-badges { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+.skill-badge {
+    padding: 10px 20px; border-radius: 8px;
+    background: rgba(0, 243, 255, 0.05); border: 1px solid rgba(0, 243, 255, 0.2);
+    color: var(--accent-color); font-weight: 600; transition: 0.3s;
+}
+.skill-badge:hover { background: var(--accent-color); color: #000; box-shadow: 0 0 15px var(--accent-glow); }
+
+/* --- 6. İLETİŞİM FORMU --- */
+.contact-box {
+    max-width: 700px; margin: 120px auto; padding: 50px;
+    background: #111; border: 1px solid #333; border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+.form-group { margin-bottom: 25px; }
+.form-group label { display: block; margin-bottom: 10px; color: #ccc; font-weight: 500; }
+.form-input {
+    width: 100%; padding: 15px; background: #1a1a1a; border: 1px solid #333;
+    color: #fff; border-radius: 10px; font-size: 1rem; transition: 0.3s;
+}
+.form-input:focus { outline: none; border-color: var(--accent-color); background: #222; }
+.btn-submit {
+    width: 100%; padding: 15px; background: var(--accent-color); color: #000;
+    border: none; border-radius: 10px; font-weight: 800; font-size: 1.1rem; cursor: pointer;
+    transition: 0.3s;
+}
+.btn-submit:hover { background: #fff; box-shadow: 0 0 25px var(--accent-glow); }
+
+/* --- 7. MOBİL UYUMLULUK --- */
 @media screen and (max-width: 768px) {
+    .navbar { padding: 0 20px; }
+    .hamburger { display: block; z-index: 1002; }
 
-    /* Hamburger İkonu */
-    .hamburger {
-        display: block;
-        font-size: 1.8rem;
-        color: white;
-        cursor: pointer;
-        z-index: 1002;
-    }
-
-    /* Menü Perdesi */
     .nav-links {
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 100%;
-        height: 100vh;
-        background: rgba(0, 0, 0, 0.98);
-
-        /* Dizilim */
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 30px;
-
-        /* GİZLEME (Transform) */
-        transform: translateX(100%); /* Ekranın sağına at */
-        transition: transform 0.3s ease-in-out;
+        position: fixed; top: 0; right: 0; width: 100%; height: 100vh;
+        background: #000; flex-direction: column; justify-content: center; align-items: center;
+        transform: translateX(100%); transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); z-index: 1001;
     }
+    .nav-links.active { transform: translateX(0); }
+    .nav-links a { font-size: 1.8rem; color: #fff; }
 
-    /* Menü Açılınca */
-    .nav-links.active {
-        transform: translateX(0); /* Ekrana getir */
-    }
+    .hero h1 { font-size: 2.8rem; }
+    .btn-group { flex-direction: column; width: 100%; }
+    .btn { width: 100%; }
 
-    .nav-links a {
-        font-size: 1.5rem;
-        color: white;
-    }
-
-    /* Hero Yazıları Küçült */
-    .hero h1 { font-size: 2.5rem; }
-    .hero h2 { font-size: 1.2rem; }
-
-    /* Butonları alt alta al */
-    .hero-btns {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .btn { width: 100%; display: block; }
+    .about-grid { grid-template-columns: 1fr; }
+    .contact-box { padding: 30px 20px; margin: 100px 20px; }
 }
+
+/* Animasyonlar */
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
