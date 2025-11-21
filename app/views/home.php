@@ -1,35 +1,83 @@
-<?php include APP_PATH . '/views/partials/header.php'; ?>
-<?php include APP_PATH . '/views/partials/navbar.php'; ?>
+<?php
+// Config ve değişkenler Router'dan geliyor.
+include APP_PATH . '/views/partials/header.php';
+include APP_PATH . '/views/partials/navbar.php';
+?>
 
-    <div id="vanta-bg"></div>
+    <!-- Hero Section -->
+    <header class="hero">
+        <!-- 3D Arka Plan -->
+        <div id="vanta-bg"></div>
 
-    <section class="hero">
-        <div style="max-width: 800px;">
-            <p style="color: #00f3ff; font-family: 'Fira Code'; margin-bottom: 10px;">&lt;Hello World /&gt;</p>
+        <!-- İçerik Container -->
+        <div class="hero-container">
 
-            <h1>Fikret Kocatürk</h1>
-            <h2>DevOps Engineer & Cloud Enthusiast</h2>
-
-            <p style="color: #ccc; line-height: 1.6; font-size: 1.1rem; margin-bottom: 40px;">
-                Ölçeklenebilir altyapılar tasarlıyor, CI/CD süreçlerini otomatikleştiriyor ve
-                bulutta (AWS) sorunsuz sistemler inşa ediyorum.
+            <p class="hero-pre">
+                <i class="fas fa-code"></i> <?php echo isset($t['hero_greeting']) ? $t['hero_greeting'] : 'Merhaba'; ?>
             </p>
 
-            <div style="display: flex; gap: 20px; justify-content: center; margin-bottom: 60px;">
-                <a href="<?php echo BASE_URL; ?>/index.php/projects" class="btn-submit" style="width: auto; padding: 12px 30px; text-decoration:none;">Projelerimi Gör</a>
-                <a href="<?php echo BASE_URL; ?>/index.php/contact" class="btn-submit" style="width: auto; padding: 12px 30px; background: transparent; border: 1px solid white; color: white; text-decoration:none;">İletişim</a>
+            <h1 class="hero-title">
+                Fikret Kocatürk
+            </h1>
+
+            <h2 class="hero-subtitle terminal-cursor">
+                <?php echo isset($t['hero_title']) ? $t['hero_title'] : 'DevOps Engineer'; ?>
+            </h2>
+
+            <p class="hero-desc">
+                <?php echo isset($t['hero_desc']) ? $t['hero_desc'] : ''; ?>
+            </p>
+
+            <!-- Butonlar -->
+            <div class="hero-btns">
+                <a href="<?php echo BASE_URL; ?>/index.php/projects?lang=<?php echo $lang; ?>" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> <?php echo isset($t['btn_projects']) ? $t['btn_projects'] : 'Projeler'; ?>
+                </a>
+
+                <a href="<?php echo BASE_URL; ?>/index.php/contact?lang=<?php echo $lang; ?>" class="btn btn-secondary">
+                    <i class="fas fa-envelope"></i> <?php echo isset($t['nav_contact']) ? $t['nav_contact'] : 'İletişim'; ?>
+                </a>
             </div>
 
-            <!-- BÜYÜTÜLMÜŞ LOGOLAR BURADA -->
-            <div class="tech-stack-icons">
+            <!-- İkonlar -->
+            <div class="hero-icons">
                 <i class="fab fa-aws" title="AWS"></i>
                 <i class="fab fa-docker" title="Docker"></i>
                 <i class="fab fa-linux" title="Linux"></i>
-                <i class="fab fa-jenkins" title="Jenkins"></i>
-                <i class="fab fa-python" title="Python"></i>
-                <i class="fas fa-terminal" title="Bash"></i>
+                <i class="fas fa-server" title="Server"></i>
+                <i class="fas fa-cloud" title="Cloud"></i>
             </div>
         </div>
-    </section>
+    </header>
 
-<?php include APP_PATH . '/views/partials/footer.php'; ?>
+    <script>
+        // Vanta.js Halo Efektini Başlat
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                if (typeof THREE === 'undefined') {
+                    console.error("Three.js yüklenemedi!");
+                    return;
+                }
+                VANTA.HALO({
+                    el: "#vanta-bg",
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    baseColor: 0x00f3ff,
+                    backgroundColor: 0x0d0d0d,
+                    amplitudeFactor: 1.5,
+                    xOffset: 0.2,
+                    yOffset: 0.2,
+                    size: 3.5
+                })
+            } catch (e) {
+                console.error("Vanta.js başlatılamadı:", e);
+            }
+        });
+    </script>
+
+<?php
+include APP_PATH . '/views/partials/footer.php';
+?>
