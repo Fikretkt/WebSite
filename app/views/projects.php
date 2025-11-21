@@ -1,58 +1,60 @@
-<?php
-// Config ve Router zaten yüklendiği için tekrar include etmiyoruz.
+<?php include APP_PATH . '/views/partials/header.php'; ?>
+<?php include APP_PATH . '/views/partials/navbar.php'; ?>
 
-// Header ve Navbar'ı doğru yoldan çağırıyoruz
-include APP_PATH . '/views/partials/header.php';
-include APP_PATH . '/views/partials/navbar.php';
+    <div class="projects-container">
+        <h2 class="section-title">&lt;Projeler /&gt;</h2>
 
-// Projeler Dizisi (Burada tutabilirsin)
-$projects = [
-        [
-                "title" => "K8s Cluster Automator",
-                "desc" => isset($lang) && $lang == 'tr' ? "Otomatik Kubernetes kurulumu." : "Automated K8s setup.",
-                "tags" => ["Terraform", "Ansible", "AWS"],
-                "link" => "#"
-        ],
-        [
-                "title" => "CI/CD Pipeline Monitor",
-                "desc" => isset($lang) && $lang == 'tr' ? "Jenkins pipeline izleme ve Slack bildirimi." : "Jenkins pipeline monitoring.",
-                "tags" => ["Python", "Grafana", "Docker"],
-                "link" => "#"
-        ],
-        [
-                "title" => "Serverless Log Analyzer",
-                "desc" => isset($lang) && $lang == 'tr' ? "Lambda ile log analizi." : "Log analysis with Lambda.",
-                "tags" => ["Node.js", "Serverless", "ELK"],
-                "link" => "#"
-        ],
-        [
-                "title" => "Docker Security Scanner",
-                "desc" => isset($lang) && $lang == 'tr' ? "Docker imajları için güvenlik taraması." : "Security scanning for Docker images.",
-                "tags" => ["Go", "Security", "Shell"],
-                "link" => "#"
-        ]
-];
-?>
-
-    <section id="projects">
-        <h2 class="section-title"><span>02.</span> <?php echo isset($t['nav_projects']) ? $t['nav_projects'] : 'Projects'; ?></h2>
         <div class="projects-grid">
-            <?php foreach($projects as $project): ?>
-                <div class="project-card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                        <i class="far fa-folder folder-icon"></i>
-                        <a href="<?php echo $project['link']; ?>" class="github-link"><i class="fab fa-github"></i></a>
-                    </div>
-                    <h3><?php echo $project['title']; ?></h3>
-                    <p><?php echo $project['desc']; ?></p>
-                    <div class="project-tags">
-                        <?php foreach($project['tags'] as $tag): ?>
-                            <span><?php echo $tag; ?></span>
-                        <?php endforeach; ?>
-                    </div>
+
+            <!-- Proje 1 -->
+            <div class="project-card">
+                <div class="project-icon"><i class="fas fa-network-wired"></i></div>
+                <h3>K8s Cluster Automator</h3>
+                <p>Terraform ve Ansible kullanarak AWS üzerinde tek tıkla Kubernetes cluster kurulumu sağlayan otomasyon projesi.</p>
+                <div class="tech-tags">
+                    <span>Terraform</span>
+                    <span>Ansible</span>
+                    <span>AWS</span>
                 </div>
-            <?php endforeach; ?>
+            </div>
+
+            <!-- Proje 2 -->
+            <div class="project-card">
+                <div class="project-icon"><i class="fas fa-sync-alt"></i></div>
+                <h3>CI/CD Pipeline Monitor</h3>
+                <p>Jenkins pipeline hatalarını anlık olarak takip eden ve Slack üzerinden ekibe bildirim gönderen Python botu.</p>
+                <div class="tech-tags">
+                    <span>Python</span>
+                    <span>Jenkins API</span>
+                    <span>Slack</span>
+                </div>
+            </div>
+
+            <!-- Proje 3 -->
+            <div class="project-card">
+                <div class="project-icon"><i class="fas fa-shield-alt"></i></div>
+                <h3>Docker Security Scanner</h3>
+                <p>Docker imajlarını güvenlik açıklarına karşı tarayan ve raporlayan Go tabanlı CLI aracı.</p>
+                <div class="tech-tags">
+                    <span>Go</span>
+                    <span>Docker</span>
+                    <span>Security</span>
+                </div>
+            </div>
+
+            <!-- Proje 4 -->
+            <div class="project-card">
+                <div class="project-icon"><i class="fas fa-cloud"></i></div>
+                <h3>Serverless Log Analyzer</h3>
+                <p>AWS Lambda kullanarak CloudWatch loglarını analiz eden ve anormal durumları tespit eden sistem.</p>
+                <div class="tech-tags">
+                    <span>AWS Lambda</span>
+                    <span>Node.js</span>
+                    <span>ELK Stack</span>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
 
 <?php include APP_PATH . '/views/partials/footer.php'; ?>

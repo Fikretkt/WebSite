@@ -1,40 +1,36 @@
-<?php
-// NOT: Config ve değişkenler ($t, $lang) Router (public/index.php) tarafından yüklendi.
-// Tekrar include etmeye gerek yok.
+<?php include APP_PATH . '/views/partials/header.php'; ?>
+<?php include APP_PATH . '/views/partials/navbar.php'; ?>
 
-// Header'ı çağır (Doğru Yol: views/partials/header.php)
-include APP_PATH . '/views/partials/header.php';
+    <div class="about-container">
+        <!-- Sol Taraf: Yazı -->
+        <div class="about-text">
+            <h2 style="color: #00f3ff;">Hakkımda</h2>
+            <p>
+                Merhaba! Ben Fikret. Teknoloji ve otomasyona olan tutkum beni DevOps dünyasına yönlendirdi.
+                Karmaşık sistemleri basitleştirmeyi, manuel işleri otomatize etmeyi ve "Continuous Everything"
+                felsefesini seviyorum.
+            </p>
+            <p>
+                Şu anda AWS üzerinde ölçeklenebilir mimariler kuruyor, Docker ve Kubernetes ile konteyner
+                orkestrasyonu sağlıyor ve Jenkins/GitLab CI ile dağıtım süreçlerini hızlandırıyorum.
+                Amacım, yazılım geliştirme ve operasyon ekipleri arasındaki köprüyü en verimli şekilde kurmak.
+            </p>
+        </div>
 
-// Navbar'ı çağır
-include APP_PATH . '/views/partials/navbar.php';
-
-// Hakkımda Çevirileri (Buraya özel)
-$about_trans = [
-        'tr' => ['title' => 'Hakkımda', 'text' => 'Merhaba! Web geliştirme geçmişimle başlayıp, sistemlerin nasıl daha verimli çalışacağını keşfettikçe <strong>DevOps</strong> dünyasına adım attım. Şu anda Linux sistemleri, konteyner orkestrasyonu ve bulut mimarileri üzerine yoğunlaşıyorum.', 'skills' => 'Kullandığım Teknolojiler:'],
-        'en' => ['title' => 'About Me', 'text' => 'Hello! I started with web development and moved into the <strong>DevOps</strong> world as I discovered how to make systems run more efficiently. I focus on Linux, containers, and cloud architectures.', 'skills' => 'Technologies I Use:'],
-        'de' => ['title' => 'Über Mich', 'text' => 'Hallo! Ich begann mit der Webentwicklung und wechselte in die <strong>DevOps</strong>-Welt, als ich entdeckte, wie man Systeme effizienter macht. Ich konzentriere mich auf Linux, Container und Cloud-Architekturen.', 'skills' => 'Technologien:']
-];
-$at = $about_trans[$lang];
-?>
-
-    <section id="about">
-        <h2 class="section-title"><span>01.</span> <?php echo $at['title']; ?></h2>
-        <div class="about-content">
-            <div class="bio">
-                <p><?php echo $at['text']; ?></p>
-            </div>
-            <div class="skills">
-                <p style="margin-bottom: 15px; font-family: var(--font-code); color: var(--accent-color);"><?php echo $at['skills']; ?></p>
-                <div class="skills-container">
-                    <span class="skill-badge">Linux / Bash</span>
-                    <span class="skill-badge">Docker & K8s</span>
-                    <span class="skill-badge">AWS / Azure</span>
-                    <span class="skill-badge">Terraform</span>
-                    <span class="skill-badge">Jenkins / GitLab CI</span>
-                    <span class="skill-badge">Python / Go</span>
-                </div>
+        <!-- Sağ Taraf: Yetenekler -->
+        <div>
+            <h3 style="color: white; margin-bottom: 20px;">Teknik Yetkinlikler</h3>
+            <div class="skills-grid">
+                <div class="skill-item">AWS (EC2, S3, RDS, Lambda)</div>
+                <div class="skill-item">Docker & Kubernetes</div>
+                <div class="skill-item">CI/CD (Jenkins, GitHub Actions)</div>
+                <div class="skill-item">IaC (Terraform, Ansible)</div>
+                <div class="skill-item">Linux (Ubuntu, RHEL)</div>
+                <div class="skill-item">Scripting (Bash, Python)</div>
+                <div class="skill-item">Monitoring (Prometheus, Grafana)</div>
+                <div class="skill-item">Database (MySQL, PostgreSQL)</div>
             </div>
         </div>
-    </section>
+    </div>
 
 <?php include APP_PATH . '/views/partials/footer.php'; ?>
