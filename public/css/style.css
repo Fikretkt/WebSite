@@ -4,13 +4,14 @@
     --text-main: #ffffff;
     --text-muted: #a0a0a0;
     --accent-color: #00f3ff; /* Neon Mavi */
-    --accent-glow: rgba(0, 243, 255, 0.4);
+    --accent-secondary: #bd00ff; /* Neon Mor */
+    --accent-glow: rgba(0, 243, 255, 0.6);
     --card-bg: rgba(255, 255, 255, 0.03);
     --card-border: rgba(255, 255, 255, 0.1);
     --glass-effect: blur(10px);
 }
 
-/* Piksel Fontu İçe Aktar (Gerekirse diye tutuyoruz) */
+/* Piksel Fontu İçe Aktar */
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -71,90 +72,92 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 
 .hamburger { display: none; font-size: 1.8rem; color: white; cursor: pointer; }
 
-/* --- 3. GİRİŞ (HERO) - SONSUZLUK DÖNGÜSÜ --- */
+/* --- 3. GİRİŞ (HERO) - SONSUZLUK DÖNGÜSÜ GÜNCELLEMESİ --- */
 .hero {
     min-height: 100vh; display: flex; align-items: center; justify-content: center;
     text-align: center; padding: 120px 20px 50px; position: relative;
 }
 
 .hero-content {
-    max-width: 1000px; animation: fadeIn 1s ease-out; position: relative; z-index: 2;
+    max-width: 1100px; animation: fadeIn 1s ease-out; position: relative; z-index: 2;
     display: flex; flex-direction: column; align-items: center;
 }
 
-/* CI/CD INFINITY LOOP CONTAINER */
+/* CI/CD DEVASA INFINITY LOOP */
 .infinity-container {
     position: relative;
-    width: 600px;
-    height: 300px;
+    width: 100%;
+    max-width: 800px; /* Çok daha geniş */
+    height: auto;
+    aspect-ratio: 2 / 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    filter: drop-shadow(0 0 30px rgba(0, 243, 255, 0.2)); /* Genel parlama */
 }
 
-/* Arka plandaki SVG */
+/* SVG Çizimi */
 .infinity-svg {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
     overflow: visible;
 }
 
-/* Akan Çizgi Animasyonu */
-.infinity-path {
-    fill: none;
-    stroke: url(#gradient); /* SVG içindeki gradient tanımı */
-    stroke-width: 4;
-    stroke-linecap: round;
-    stroke-dasharray: 20 40; /* Kesik çizgiler */
-    animation: flow 2s linear infinite;
-    filter: drop-shadow(0 0 10px var(--accent-color));
-}
-
-/* Arkadaki silik yol */
+/* Arka Plandaki Sabit Yol (Kılavuz Çizgi) */
 .infinity-path-bg {
     fill: none;
-    stroke: rgba(255, 255, 255, 0.05);
-    stroke-width: 4;
+    stroke: rgba(255, 255, 255, 0.08); /* Çok silik beyaz */
+    stroke-width: 8; /* Kalın */
+    stroke-linecap: round;
+}
+
+/* Akan Hareketli Yol (Data Akışı) */
+.infinity-path {
+    fill: none;
+    stroke: url(#gradient); /* Renk geçişi */
+    stroke-width: 10; /* Arkadakinden daha kalın ve belirgin */
+    stroke-linecap: round;
+    stroke-dasharray: 50 150; /* Veri paketleri gibi kesik çizgiler */
+    animation: flow 1.5s linear infinite; /* Hızlı akış */
+    filter: drop-shadow(0 0 15px var(--accent-color)); /* Neon Parlama */
 }
 
 @keyframes flow {
-    100% { stroke-dashoffset: -60; }
+    100% { stroke-dashoffset: -200; }
 }
 
-/* İSİM (Döngünün Merkezinde) */
+/* İSİM BAŞLIĞI (Döngüden Çıkarıldı, Altına Eklendi) */
 .hero h1 {
-    position: relative;
-    z-index: 10;
-    font-size: 4.5rem;
+    font-size: 5rem;
     font-weight: 900;
-    letter-spacing: -2px;
-    line-height: 1;
-    margin: 0;
+    letter-spacing: -3px;
+    line-height: 1.1;
+    margin-bottom: 15px;
+    text-transform: uppercase;
 
-    background: linear-gradient(to right, #fff, #00f3ff, #fff);
-    background-size: 200% auto;
+    /* Gümüş ve Neon Geçişi */
+    background: linear-gradient(to right, #fff, #a0a0a0, #00f3ff, #fff);
+    background-size: 300% auto;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: shine 3s linear infinite;
-    text-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+    animation: shine 6s linear infinite;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
 }
 
+/* Fütüristik Alt Başlık */
 .hero-subtitle {
-    font-size: 2rem; font-weight: 700; margin-top: -20px; margin-bottom: 40px;
+    font-size: 2.2rem; font-weight: 700; margin-bottom: 40px;
     background: linear-gradient(90deg, #bd00ff, #00f3ff);
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    letter-spacing: 1px;
 }
 
 @keyframes shine { to { background-position: 200% center; } }
 
 .hero p {
     font-size: 1.2rem; color: #ccc; margin-bottom: 50px; max-width: 800px;
-    text-shadow: 0 2px 5px rgba(0,0,0,1);
+    text-shadow: 0 2px 5px rgba(0,0,0,1); line-height: 1.8;
 }
 
 .btn-group { display: flex; gap: 20px; justify-content: center; margin-bottom: 60px; z-index: 10; position: relative; }
@@ -170,10 +173,9 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 
 /* --- MOBİL UYUMLULUK --- */
 @media screen and (max-width: 768px) {
-    .infinity-container { width: 100%; height: auto; min-height: 200px; }
-    .hero h1 { font-size: 2.5rem; }
-    .infinity-svg { transform: scale(0.8); }
-    .gear-wrapper { transform: scale(0.8); }
+    .infinity-container { max-width: 100%; margin-bottom: 20px; }
+    .hero h1 { font-size: 3rem; letter-spacing: -1px; }
+    .hero-subtitle { font-size: 1.5rem; }
     .navbar { padding: 0 20px; }
     .hamburger { display: block; z-index: 1002; }
     .nav-links { position: fixed; top: 0; right: 0; width: 100%; height: 100vh; background: #000; flex-direction: column; justify-content: center; align-items: center; transform: translateX(100%); transition: 0.4s; z-index: 1001; }
@@ -183,7 +185,7 @@ a { text-decoration: none; color: inherit; transition: 0.3s; }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-/* DİĞER SAYFALAR İÇİN KARTLAR VS. AYNEN KORUNDU */
+/* DİĞER SAYFALAR AYNEN KORUNDU */
 .section-container { max-width: 1200px; margin: 100px auto; padding: 0 20px; }
 .section-title { font-size: 2.5rem; margin-bottom: 50px; text-align: center; color: white; position: relative; display: inline-block; left: 50%; transform: translateX(-50%); }
 .section-title::after { content: ''; display: block; width: 80px; height: 4px; background: var(--accent-color); margin: 15px auto 0; border-radius: 2px; box-shadow: 0 0 10px var(--accent-color); }
