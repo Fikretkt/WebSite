@@ -1,0 +1,151 @@
+/* --- SIFIRLAMA --- */
+:root {
+    --bg-color: #0d0d0d;
+    --text-main: #e0e0e0;
+    --accent-color: #00f3ff;
+    --nav-bg: rgba(13, 13, 13, 0.95);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+    width: 100%;
+    overflow-x: hidden; /* Yatay taşmayı engelle */
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+}
+
+/* --- VANTA BACKGROUND --- */
+#vanta-bg {
+    position: fixed; /* Arka planı sabitle */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--accent-color);
+}
+
+/* Masaüstü Menü */
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    font-size: 0.9rem;
+    color: #aaa;
+}
+
+.hamburger { display: none; }
+
+/* --- HERO SECTION --- */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 20px 20px 20px; /* Navbar payı */
+}
+
+.hero-container {
+    position: relative;
+    z-index: 10;
+    max-width: 800px;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.hero h2 {
+    font-size: 2rem;
+    color: #a0a0a0;
+    margin-bottom: 20px;
+}
+
+/* =========================================
+   MOBİL GÖRÜNÜM (768px ve altı)
+   ========================================= */
+@media screen and (max-width: 768px) {
+
+    /* Hamburger İkonu */
+    .hamburger {
+        display: block;
+        font-size: 1.8rem;
+        color: white;
+        cursor: pointer;
+        z-index: 1002;
+    }
+
+    /* Menü Perdesi */
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.98);
+
+        /* Dizilim */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 30px;
+
+        /* GİZLEME (Transform) */
+        transform: translateX(100%); /* Ekranın sağına at */
+        transition: transform 0.3s ease-in-out;
+    }
+
+    /* Menü Açılınca */
+    .nav-links.active {
+        transform: translateX(0); /* Ekrana getir */
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+        color: white;
+    }
+
+    /* Hero Yazıları Küçült */
+    .hero h1 { font-size: 2.5rem; }
+    .hero h2 { font-size: 1.2rem; }
+
+    /* Butonları alt alta al */
+    .hero-btns {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn { width: 100%; display: block; }
+}

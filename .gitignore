@@ -1,0 +1,12 @@
+# IDE ve Editör Dosyaları
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Sistem Dosyaları
+.DS_Store
+Thumbs.db
+
+# Docker (Eğer veritabanı dosyaları proje içinde oluşuyorsa)
+/mysql_data/

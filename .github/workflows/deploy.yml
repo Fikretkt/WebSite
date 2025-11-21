@@ -1,0 +1,55 @@
+name: Deploy to AWS EC2 (Docker)
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy to EC2
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the files
+        uses: actions/checkout@v4
+
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_IP }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.EC2_SSH_KEY }}
+          port: 22
+          debug: true
+          script: |
+            set -e
+            
+            # --- HATA DÜZELTME SATIRLARI ---
+            # Sunucuda buildx olmadığı için eski build yöntemini zorluyoruz:
+            export DOCKER_BUILDKIT=0
+            export COMPOSE_DOCKER_CLI_BUILD=0
+            # -------------------------------
+
+            # Proje klasörüne git
+            cd /var/www/html
+            
+            # Git güvenliği
+            sudo git config --global --add safe.directory /var/www/html
+            
+            # İzinleri düzelt
+            sudo chown -R ec2-user:ec2-user /var/www/html
+            
+            # Kodları Çek
+            git fetch --all
+            git reset --hard origin/main
+            
+            # DOCKER BÖLÜMÜ:
+            # Eski konteynerleri durdur
+            docker-compose down
+            
+            # Yenilerini başlat (BuildKit kapalı olarak)
+            docker-compose up -d --build
+            
+            # Gereksiz imajları temizle
+            docker system prune -f

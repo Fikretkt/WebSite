@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  # 1. Web Sunucusu (PHP + Apache)
+  web:
+    build: .
+    ports:
+      - "80:80"  # Tarayıcıda localhost:8080 ile ulaşacağız
+    volumes:
+      - .:/var/www/html # Kod değişikliğini anında yansıt (Canlı geliştirme için)
+    depends_on:
+      - db # Veritabanı başlamadan web sitesi başlamasın
+    environment:
+      - DB_HOST=db       # Veritabanı sunucusunun adı (aşağıdaki servis adı)
+      - DB_NAME=portfolio_db
+      - DB_USER=fikret
+      - DB_PASS=12345
+
+  # 2. Veritabanı Sunucusu (MariaDB)
+  db:
+    image: mariadb:10.5
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: portfolio_db
+      MYSQL_USER: fikret
+      MYSQL_PASSWORD: 12345
+    volumes:
+      - db_data:/var/lib/mysql # Veriler silinmesin diye yedekle
+      # Başlangıçta tabloları otomatik oluştur
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+# Veri kalıcılığı için alan
+volumes:
+  db_data:

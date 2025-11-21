@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Eğer istek bir dosya (!-f) veya klasör (!-d) değilse...
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # İsteği index.php'ye yönlendir
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
